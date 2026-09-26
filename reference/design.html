@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAYAT Medical — Farg‘ona</title>
+<meta name="description" content="HAYAT Medical — Farg‘onadagi zamonaviy tibbiyot markazi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#18201f;
+  --muted:#69716f;
+  --paper:#f6f4ef;
+  --white:#fff;
+  --line:rgba(24,32,31,.12);
+  --red:#e7192e;
+  --cyan:#00a9cf;
+  --gold:#b7965a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",sans-serif}
+a{text-decoration:none;color:inherit}
+button,input,select{font:inherit}
+.container{width:min(1240px,calc(100% - 48px));margin:auto}
+
+/* NAV */
+.nav{
+  position:fixed;z-index:50;top:0;left:0;right:0;
+  color:#fff;transition:.35s;padding:18px 0;
+}
+.nav.scrolled{background:rgba(255,255,255,.94);color:var(--ink);backdrop-filter:blur(18px);box-shadow:0 1px 0 var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:28px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:.02em}
+.brand img{width:46px;height:42px;object-fit:contain}
+.brand-text{line-height:.9;font-size:19px}
+.brand-text small{display:block;font-size:8px;letter-spacing:.22em;font-weight:600;margin-top:5px}
+.menu{display:flex;gap:30px;align-items:center;font-size:13px;font-weight:600}
+.menu a{opacity:.88}.menu a:hover{opacity:1}
+.nav-cta{border:1px solid rgba(255,255,255,.55);padding:12px 17px;border-radius:999px;background:rgba(255,255,255,.1);color:inherit;cursor:pointer}
+.scrolled .nav-cta{border-color:var(--ink);background:var(--ink);color:#fff}
+
+/* HERO */
+.hero{min-height:900px;position:relative;color:#fff;display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url("https://hayatmedical.x10.mx/images/umumiy-t.jpg") center 48%/cover no-repeat;transform:scale(1.02)}
+.hero:after{content:"";position:absolute;inset:0;background:
+ linear-gradient(90deg,rgba(5,12,12,.76) 0%,rgba(5,12,12,.42) 42%,rgba(5,12,12,.12) 72%),
+ linear-gradient(0deg,rgba(5,12,12,.70) 0%,transparent 42%)}
+.hero-content{position:relative;z-index:2;padding:150px 0 72px;width:100%}
+.kicker{display:flex;align-items:center;gap:12px;text-transform:uppercase;letter-spacing:.22em;font-size:11px;font-weight:700;color:#e9eeeb}
+.kicker:before{content:"";width:34px;height:1px;background:var(--cyan)}
+.hero h1{font-family:"Playfair Display",serif;font-weight:500;font-size:clamp(54px,7.3vw,108px);line-height:.93;letter-spacing:-.045em;max-width:800px;margin:25px 0}
+.hero h1 em{font-style:normal;color:#dfece8}
+.hero-copy{font-size:17px;line-height:1.7;color:rgba(255,255,255,.82);max-width:550px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{border:0;border-radius:999px;padding:15px 22px;cursor:pointer;font-weight:700;font-size:13px;transition:.25s}
+.btn-main{background:#fff;color:var(--ink)}.btn-main:hover{transform:translateY(-2px)}
+.btn-ghost{border:1px solid rgba(255,255,255,.45);color:#fff;background:rgba(255,255,255,.08);backdrop-filter:blur(8px)}
+.hero-bottom{position:relative;z-index:2;margin-top:100px;display:flex;justify-content:space-between;align-items:flex-end;gap:25px}
+.hero-note{font-size:12px;color:rgba(255,255,255,.7)}
+.hero-note strong{display:block;color:#fff;font-size:14px;margin-bottom:5px}
+.booking{
+  width:min(370px,100%);background:rgba(255,255,255,.96);color:var(--ink);
+  padding:24px;border-radius:22px;box-shadow:0 25px 70px rgba(0,0,0,.22);backdrop-filter:blur(15px)
+}
+.booking-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:18px}
+.booking h3{margin:0;font-size:19px}.booking-head span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.14em}
+.booking-row{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.booking input,.booking select{width:100%;border:1px solid #dfe4e1;border-radius:11px;padding:12px;background:#fafbf9;outline:none}
+.booking .full{grid-column:1/-1}
+.booking .btn{width:100%;background:var(--ink);color:#fff;margin-top:9px}
+
+/* SECTIONS */
+section{padding:120px 0}
+.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.2em;font-weight:700;color:var(--gold)}
+.display{font-family:"Playfair Display",serif;font-weight:500;font-size:clamp(40px,5vw,70px);line-height:1.02;letter-spacing:-.04em;margin:14px 0 24px}
+.lead{color:var(--muted);font-size:16px;line-height:1.8;max-width:580px}
+
+/* INTRO */
+.intro{background:#fff}
+.intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:90px;align-items:center}
+.intro-image{position:relative}
+.intro-image img{width:100%;height:650px;object-fit:cover;border-radius:2px}
+.image-label{position:absolute;bottom:20px;left:20px;background:#fff;padding:15px 18px;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.intro-copy{padding-right:20px}
+.signature{margin-top:40px;display:flex;align-items:center;gap:14px}
+.signature .line{height:1px;width:45px;background:var(--gold)}
+.signature span{font-family:"Playfair Display",serif;font-size:20px}
+
+/* SERVICES */
+.services{background:var(--paper)}
+.section-top{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:55px}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.service{
+  min-height:260px;padding:28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  transition:.25s;position:relative;background:rgba(255,255,255,.28)
+}
+.service:hover{background:#fff}
+.service-no{font-size:11px;color:var(--gold);letter-spacing:.15em}
+.service h3{font-family:"Playfair Display",serif;font-size:29px;font-weight:500;margin:70px 0 10px}
+.service p{color:var(--muted);font-size:13px;line-height:1.7;max-width:280px}
+.service-arrow{position:absolute;right:25px;bottom:25px;font-size:20px}
+
+/* FEATURE */
+.feature{background:var(--ink);color:#fff}
+.feature-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:90px;align-items:center}
+.feature-list{margin-top:40px}
+.feature-item{display:grid;grid-template-columns:48px 1fr;gap:20px;padding:24px 0;border-top:1px solid rgba(255,255,255,.13)}
+.feature-item:last-child{border-bottom:1px solid rgba(255,255,255,.13)}
+.feature-num{color:#8f9995;font-size:12px}
+.feature-item h3{margin:0 0 7px;font-size:18px}.feature-item p{margin:0;color:#aeb7b3;font-size:13px;line-height:1.7}
+.feature-photo{height:650px;overflow:hidden}.feature-photo img{height:100%;object-fit:cover}
+
+/* CTA */
+.cta{background:#fff;padding:100px 0}
+.cta-box{background:linear-gradient(120deg,#f1eee7,#fff);border:1px solid var(--line);padding:70px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+.cta-box .display{max-width:700px;margin-bottom:0}
+
+/* FOOTER */
+footer{background:#111716;color:#fff;padding:70px 0 25px}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:50px}
+footer .brand{margin-bottom:20px}
+.footer-title{font-size:12px;text-transform:uppercase;letter-spacing:.14em;margin-bottom:18px;color:#fff}
+footer p,footer li{color:#9ca6a2;font-size:13px;line-height:1.8}
+footer ul{list-style:none;margin:0;padding:0}
+footer li{margin:6px 0}
+.copyright{border-top:1px solid rgba(255,255,255,.1);margin-top:55px;padding-top:20px;color:#68736f;font-size:11px;display:flex;justify-content:space-between}
+
+/* MOBILE */
+.mobile-toggle{display:none;background:none;border:0;color:inherit;font-size:23px}
+@media(max-width:900px){
+ .container{width:min(100% - 30px,1240px)}
+ .menu{display:none}.mobile-toggle{display:block}
+ .hero{min-height:920px}.hero-content{padding-top:130px}
+ .hero-bottom{margin-top:60px;display:block}.booking{margin-top:35px}
+ .intro-grid,.feature-grid{grid-template-columns:1fr;gap:45px}
+ .intro-image img,.feature-photo{height:500px}
+ .services-grid{grid-template-columns:1fr 1fr}
+ .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+ section{padding:80px 0}
+ .hero{min-height:980px}
+ .hero h1{font-size:55px}
+ .hero-content{padding-bottom:40px}
+ .hero-bottom{margin-top:40px}
+ .booking{padding:19px}
+ .intro-image img,.feature-photo{height:430px}
+ .services-grid{grid-template-columns:1fr}
+ .section-top{display:block}
+ .section-top .lead{margin-top:15px}
+ .cta-box{padding:38px 28px;display:block}.cta-box .btn{margin-top:28px}
+ .footer-grid{grid-template-columns:1fr}
+ .copyright{display:block}.copyright span{display:block;margin-top:8px}
+}
+</style>
+</head>
+
+<body>
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="#">
+      <img src="https://hayatmedical.x10.mx/images/logo.png" alt="HAYAT Medical">
+      <span class="brand-text">HAYAT<small>MEDICAL</small></span>
+    </a>
+
+    <nav class="menu">
+      <a href="#about">Klinika</a>
+      <a href="#services">Yo‘nalishlar</a>
+      <a href="#advantages">Afzalliklar</a>
+      <a href="#contact">Aloqa</a>
+    </nav>
+
+    <button class="nav-cta" onclick="openBooking()">Qabulga yozilish</button>
+    <button class="mobile-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="container hero-content">
+    <div class="kicker">Farg‘ona · Zamonaviy tibbiyot markazi</div>
+    <h1>Salomatlikka<br><em>e’tibor</em> — har kuni.</h1>
+    <p class="hero-copy">
+      HAYAT Medical — bemor uchun qulay muhit, zamonaviy tibbiy yondashuv
+      va professional xizmatni birlashtirgan tibbiyot markazi.
+    </p>
+
+    <div class="hero-actions">
+      <button class="btn btn-main" onclick="openBooking()">Qabulga yozilish →</button>
+      <a class="btn btn-ghost" href="#services">Yo‘nalishlarni ko‘rish</a>
+    </div>
+
+    <div class="hero-bottom">
+      <div class="hero-note">
+        <strong>HAYAT Medical</strong>
+        Farg‘ona shahri
+      </div>
+
+      <div class="booking" id="booking">
+        <div class="booking-head">
+          <div>
+            <span>Online xizmat</span>
+            <h3>Qabulga yozilish</h3>
+          </div>
+          <span>01</span>
+        </div>
+        <div class="booking-row">
+          <input class="full" type="text" placeholder="Ism va familiya">
+          <input type="tel" placeholder="+998 __ ___ __ __">
+          <select>
+            <option>Yo‘nalishni tanlang</option>
+            <option>Terapiya</option>
+            <option>Kardiologiya</option>
+            <option>Ginekologiya</option>
+            <option>Pediatriya</option>
+            <option>Nevrologiya</option>
+            <option>Diagnostika</option>
+          </select>
+          <select>
+            <option>Qulay vaqt</option>
+            <option>Ertalab</option>
+            <option>Kunduzi</option>
+            <option>Kechqurun</option>
+          </select>
+          <button class="btn full" onclick="submitBooking()">Ariza yuborish</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="intro" id="about">
+  <div class="container intro-grid">
+    <div class="intro-image">
+      <img src="https://hayatmedical.x10.mx/images/kirish.jpg" alt="HAYAT Medical reception">
+      <div class="image-label">HAYAT Medical · Reception</div>
+    </div>
+
+    <div class="intro-copy">
+      <div class="eyebrow">Biz haqimizda</div>
+      <h2 class="display">Tibbiyotda<br>insoniy yondashuv.</h2>
+      <p class="lead">
+        Bizning maqsadimiz — bemor klinikaga kirgan ilk daqiqadanoq
+        o‘zini ishonchli va qulay muhitda his qilishi. HAYAT Medical
+        zamonaviy klinik infratuzilma va professional tibbiy xizmatni
+        birlashtiradi.
+      </p>
+      <div class="signature">
+        <div class="line"></div>
+        <span>HAYAT Medical</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-top">
+      <div>
+        <div class="eyebrow">Tibbiy yo‘nalishlar</div>
+        <h2 class="display">Kerakli mutaxassis<br>bir qadam narida.</h2>
+      </div>
+      <p class="lead">
+        Klinikadagi mavjud yo‘nalishlar bo‘yicha ma’lumot,
+        shifokorlar va qabul imkoniyatlari keyinchalik admin panel
+        orqali boshqarilishi mumkin.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <article class="service">
+        <div class="service-no">01 / KONSULTATSIYA</div>
+        <h3>Terapiya</h3>
+        <p>Umumiy salomatlik, profilaktika va terapevtik maslahat.</p>
+        <div class="service-arrow">↗</div>
+      </article>
+      <article class="service">
+        <div class="service-no">02 / MUTAXASSIS</div>
+        <h3>Kardiologiya</h3>
+        <p>Yurak-qon tomir tizimi bo‘yicha konsultatsiya va tekshiruvlar.</p>
+        <div class="service-arrow">↗</div>
+      </article>
+      <article class="service">
+        <div class="service-no">03 / AYOLLAR SALOMATLIGI</div>
+        <h3>Ginekologiya</h3>
+        <p>Ayollar salomatligi bo‘yicha professional tibbiy xizmatlar.</p>
+        <div class="service-arrow">↗</div>
+      </article>
+      <article class="service">
+        <div class="service-no">04 / BOLALAR</div>
+        <h3>Pediatriya</h3>
+        <p>Bolalar salomatligini nazorat qilish va mutaxassis konsultatsiyasi.</p>
+        <div class="service-arrow">↗</div>
+      </article>
+      <article class="service">
+        <div class="service-no">05 / ASAB TIZIMI</div>
+        <h3>Nevrologiya</h3>
+        <p>Asab tizimi bilan bog‘liq holatlarni baholash va konsultatsiya.</p>
+        <div class="service-arrow">↗</div>
+      </article>
+      <article class="service">
+        <div class="service-no">06 / TEKSHIRUV</div>
+        <h3>Diagnostika</h3>
+        <p>Tekshiruvlar va diagnostika xizmatlari uchun alohida bo‘lim.</p>
+        <div class="service-arrow">↗</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="feature" id="advantages">
+  <div class="container feature-grid">
+    <div>
+      <div class="eyebrow">Nega HAYAT?</div>
+      <h2 class="display">Klinika emas.<br>To‘liq tajriba.</h2>
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="feature-num">01</div>
+          <div><h3>Qulay muhit</h3><p>Reception va klinika muhiti bemor tajribasining muhim qismi sifatida yaratilgan.</p></div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">02</div>
+          <div><h3>Zamonaviy yondashuv</h3><p>Tibbiy xizmatni raqamli qabul va qulay aloqa imkoniyatlari bilan bog‘lash.</p></div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">03</div>
+          <div><h3>Bir joyda</h3><p>Yo‘nalishlar, shifokorlar, diagnostika va qabul ma’lumotlari bitta platformada.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-photo">
+      <img src="https://hayatmedical.x10.mx/images/kirish.jpg" alt="HAYAT Medical interior">
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <div class="cta-box">
+      <div>
+        <div class="eyebrow">Keyingi qadam</div>
+        <h2 class="display">Sog‘lig‘ingizni<br>keyinga qoldirmang.</h2>
+      </div>
+      <button class="btn" style="background:var(--ink);color:#fff" onclick="openBooking()">Qabulga yozilish →</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="#">
+          <img src="https://hayatmedical.x10.mx/images/logo.png" alt="HAYAT Medical">
+          <span class="brand-text">HAYAT<small>MEDICAL</small></span>
+        </a>
+        <p>Farg‘onadagi zamonaviy tibbiyot markazi.</p>
+      </div>
+      <div>
+        <div class="footer-title">Sayt</div>
+        <ul><li><a href="#about">Klinika</a></li><li><a href="#services">Yo‘nalishlar</a></li><li><a href="#advantages">Afzalliklar</a></li></ul>
+      </div>
+      <div>
+        <div class="footer-title">Aloqa</div>
+        <ul><li>Telefon raqami</li><li>Telegram</li><li>Instagram</li></ul>
+      </div>
+      <div>
+        <div class="footer-title">Manzil</div>
+        <ul><li>Farg‘ona shahri</li><li>Ish vaqti</li><li>Xarita →</li></ul>
+      </div>
+    </div>
+    <div class="copyright"><span>© 2026 HAYAT Medical</span><span>Farg‘ona, O‘zbekiston</span></div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40));
+
+function openBooking(){
+  document.getElementById('booking').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function submitBooking(){
+  alert("Demo: ariza qabul qilindi. Keyingi bosqichda bu forma Telegram/CRM bilan ulanadi.");
+}
+</script>
+</body>
+</html>
